@@ -1,0 +1,37 @@
+(ok)Version 1
+Créer la base de données:
+membre (id_membre, nom , date de naissance, genre, émail, ville, mdp, image_profil)
+categorie_objet (id_categorie, nom_categorie )
+objet (id_objet , nom_objet , id_categorie, id_membre)
+images_objet(id_image, id_objet, nom_image)
+emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
+Insérer les données de test
+4  membres
+4 catégories ( esthétique, bricolage, mécanique , cuisine )
+10 objets par membre à répartir sur les catégories
+10 emprunts
+
+Page à créer
+Login et inscription
+Liste des objets , (avec date de retour si emprunt en cours )
+Filtre par catégorie 
+
+Version 2
+Améliorer au maximum le design
+Ajout d’un nouvel objet (avec upload d’image) par un membre
+on peut avoir plusieurs images, mais la 1ère image sera l’image principale à afficher sur la liste des objets)
+on peut supprimer les images
+s’il n’y a pas d’images, mettre une image par défaut
+Lorsqu’on clique sur un objet dans la liste, afficher la fiche de l’objet (image principale + autres images) avec l’historique des emprunts
+mettre les critères de recherche suivant sur la liste des objets
+catégorie (zone de liste)
+nom de l’objet 
+case à cocher disponible
+dans la fiche membre, mettre les infos du membre, ainsi que les objets du membre regroupés par catégorie
+
+aleas 1 ampiana bouton emprunté eo @lay liste anah objet d asaina
+misafidy duré d'emprunt
+
+emprunt rehetra ao @ fiche 
+bouton retour 
+zone de liste ok ou abîmer
