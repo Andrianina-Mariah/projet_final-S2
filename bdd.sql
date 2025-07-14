@@ -3,7 +3,7 @@ CREATE TABLE emprunt_membre (
     id_membre INT NOT NULL AUTO_INCREMENT,
     nom VARCHAR(140) NOT NULL,
     date_de_naissance DATE NOT NULL,
-    genre ENUM('M', 'F') NOT NULL,
+    genre  VARCHAR(10)  NOT NULL,
     email VARCHAR(200) NOT NULL,
     ville VARCHAR(200) NOT NULL,
     mdp VARCHAR(200) NOT NULL,

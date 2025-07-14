@@ -13,12 +13,17 @@
     </header>
     <section>
         <article>
-            <form action="../inc/traitement_login.php" method="POST">
+            <form action="../inc/traitement-inscription.php" method="POST">
                 <p>Votre email<input type="email" name="email" placeholder="email..."/></p>
                 <p>Nom<input type="text" name="name" placeholder="nom..."/></p>
                 <p>Date de naissance<input type="date" name="dtn" placeholder="date de naissance..."/></p>
                 <p>Ville<input type="text" name="ville" placeholder="ville"/></p>
-                <p>Genre<input type="email" name="email" placeholder="email..."/></p>
+                <p>Genre<select name="genre">
+                    <option value="">-- Choisissez un genre --</option>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                    <option value="autre">Autre</option>
+                </select></p>
                 <p>Mots de passe <input type="password" name="mdp" placeholder="mots de passe"/></p>
                 <input type="submit" value="Se connecter" />    
                 <p>Pas de compte <a href="inscription.php">Inscrivez-vous.</a></p>
