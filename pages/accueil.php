@@ -17,14 +17,31 @@ $mail =$_SESSION['email'] ;
         <h1>Bienvenue</h1>
     </header>
     <section>
-        <article>
-            <form action="../inc/traitement_login.php" method="POST">
-                <p>Votre email <input type="email" name="email" placeholder="email..."/></p>
-                <p>Mots de passe <input type="password" name="mdp" placeholder="mots de passe"/></p>
-                <input type="submit" value="Se connecter" />    
-                <p>Pas de compte <a href="inscription.php">Inscrivez-vous.</a></p>
-        </form>
-            </form>
+        <article class="liste_obj">
+        
+            <table class="table table-striped centered-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nom objet</th>
+                                    <th scope="col">date de retour</th>
+                                </tr>
+                            </thead>
+                            <body>
+                                <?php 
+                                $resultat = get_objet();
+                                while ($donnees = mysqli_fetch_assoc($resultat)) { ?>
+                                    <tr>
+                                        <td scope="row"><?php echo $donnees['nom_objet']; ?></td>
+                                        <td scope="row"><?php echo $donnees['date_retour']; ?></td>      
+                
+                                    </tr>
+                                      <?php } ?>
+                           
+                            </body>
+                        </table>
+
+           
+
         </article>
     </section>
 </body>

@@ -92,16 +92,59 @@ INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VAL
 (9, 1, '2023-10-09', '2023-10-19'),
 (10, 2, '2023-10-10', '2023-10-20');
 
+
+INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
+(5, 1, '2023-10-11', '2023-10-21'),
+(9, 1, '2023-10-12', '2023-10-22'),
+(13, 1, '2023-10-13', '2023-10-23'),
+(17, 1, '2023-10-14', '2023-10-24'),
+(1, 1, '2023-10-15', '2023-10-25'), -
+(13, 1, '2023-10-16', '2023-10-26');
+
+-- Bob Martin (id_membre = 2)
+INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
+(6, 2, '2023-10-11', '2023-10-21'),
+(10, 2, '2023-10-12', '2023-10-22'),
+(14, 2, '2023-10-13', '2023-10-23'),
+(18, 2, '2023-10-14', '2023-10-24'),
+(2, 2, '2023-10-15', '2023-10-25'), 
+(14, 2, '2023-10-16', '2023-10-26');
+
+-- Claire Bernard (id_membre = 3)
+INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
+(11, 3, '2023-10-11', '2023-10-21'),
+(15, 3, '2023-10-12', '2023-10-22'),
+(19, 3, '2023-10-13', '2023-10-23'),
+(3, 3, '2023-10-14', '2023-10-24'),
+(5, 3, '2023-10-15', '2023-10-25'),
+(19, 3, '2023-10-16', '2023-10-26');
+
+-- David Lefevre (id_membre = 4)
+INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
+(12, 4, '2023-10-11', '2023-10-21'),
+(16, 4, '2023-10-12', '2023-10-22'),
+(20, 4, '2023-10-13', '2023-10-23'),
+(4, 4, '2023-10-14', '2023-10-24'),
+(7, 4, '2023-10-15', '2023-10-25'),
+(20, 4, '2023-10-16', '2023-10-26');
+
+
 CREATE OR REPLACE VIEW v_emprunt_objet AS
 SELECT 
     o.id_objet,
     o.nom_objet,
     o.id_categorie,
-    o.id_membre,         
+    o.id_membre,
     e.id_emprunt,
     e.date_emprunt,
     e.date_retour
 FROM 
     emprunt_objet o
-    JOIN emprunt_emprunt de ON e.id_objet = o.id_objet
-    ;
+JOIN 
+    emprunt_emprunt e ON e.id_objet = o.id_objet
+WHERE 
+    e.date_emprunt = (
+        SELECT MAX(e2.date_emprunt)
+        FROM emprunt_emprunt e2
+        WHERE e2.id_objet = o.id_objet
+    );

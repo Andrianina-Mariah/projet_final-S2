@@ -16,4 +16,13 @@ function dbconnect()
     }
     return $connect;
 }
+
+function get_objet()
+{
+    $bdd = dbconnect();    
+    $resultat=mysqli_query($bdd , 'select * from v_emprunt_objet');
+    return $resultat;
+}
+
+function
 ?>
