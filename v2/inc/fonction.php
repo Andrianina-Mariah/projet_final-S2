@@ -54,4 +54,9 @@ function get_membre($mail)
     $ret = mysqli_fetch_assoc($resultat);
     return $ret;
 }
+
+function get_one_objet()
+{
+    
+}
 ?>

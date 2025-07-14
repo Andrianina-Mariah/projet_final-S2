@@ -9,7 +9,7 @@ if (isset($_GET['cat']) && $_GET['cat'] != "") {
     $cat = $_GET['cat'];
     $resultat = filtre_cat($cat);
 } else {
-    $cat = ""; // valeur par défaut
+    $cat = ""; 
     $resultat = get_objet();
 }
 ?>
@@ -60,6 +60,7 @@ if (isset($_GET['cat']) && $_GET['cat'] != "") {
             <table class="table table-striped centered-table">
                 <thead>
                     <tr>
+                        <th>Option</th>
                         <th>Nom objet</th>
                         <th>Date de retour</th>
                     </tr>
@@ -67,7 +68,16 @@ if (isset($_GET['cat']) && $_GET['cat'] != "") {
                 <tbody>
                     <?php while ($donnees = mysqli_fetch_assoc($resultat)): ?>
                         <tr>
-                            <td><?= htmlspecialchars($donnees['nom_objet']) ?></td>
+                            <td>
+                                <form action="emprunt.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="id_o" value="<?= $donnees['id_objet'];?>">
+                                    <input type="hidden" name="id_m" value="<?= $donnees['id_membre'];?>">
+                               <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;"> 
+                               emprunter
+                               </button>
+                                 </form>
+                                </td> 
+                                 <td><?=htmlspecialchars($donnees['nom_objet']); ?></td>
                             <td><?= htmlspecialchars($donnees['date_retour']) ?></td>
                         </tr>
                     <?php endwhile; ?>

@@ -114,3 +114,4 @@ LEFT JOIN
         ORDER BY e2.date_emprunt DESC
         LIMIT 1
     );
+
