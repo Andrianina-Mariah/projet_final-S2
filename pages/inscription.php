@@ -20,12 +20,17 @@
                 <p>Ville<input type="text" name="ville" placeholder="ville"/></p>
                 <p>Genre<select name="genre">
                     <option value="">-- Choisissez un genre --</option>
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                    <option value="autre">Autre</option>
+                    <option value="M">Homme</option>
+                    <option value="F">Femme</option>
                 </select></p>
                 <p>Mots de passe <input type="password" name="mdp" placeholder="mots de passe"/></p>
-                <input type="submit" value="Se connecter" />    
+                      <!-- <form action="../inc/traitement-photo.php" method="POST" enctype="multipart/form-data">
+                        <label for="media">Sélectionnez votre photo :</label>
+                        <input type="file" id="media" name="media" accept="image/*" required>
+                        <button type="submit">Sélectionner</button>
+                    </form>   -->
+                <input type="submit" value="Se connecter" />  
+                <br>
                 <p>Pas de compte <a href="inscription.php">Inscrivez-vous.</a></p>
         </form>
             </form>

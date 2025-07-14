@@ -23,8 +23,8 @@ CREATE TABLE emprunt_objet (
     id_categorie INT NOT NULL,
     id_membre INT NOT NULL,
     PRIMARY KEY (id_objet),
-    FOREIGN KEY (id_categorie) REFERENCES categorie_objet(id_categorie),
-    FOREIGN KEY (id_membre) REFERENCES membre(id_membre)
+    FOREIGN KEY (id_categorie) REFERENCES emprunt_categorie_objet(id_categorie),
+    FOREIGN KEY (id_membre) REFERENCES emprunt_membre(id_membre)
 );
 
 CREATE TABLE emprunt_images_objet (
@@ -32,7 +32,7 @@ CREATE TABLE emprunt_images_objet (
     id_objet INT NOT NULL,
     nom_image VARCHAR(200) NOT NULL,
     PRIMARY KEY (id_image),
-    FOREIGN KEY (id_objet) REFERENCES objet(id_objet)
+    FOREIGN KEY (id_objet) REFERENCES emprunt_objet(id_objet)
 );
 
 CREATE TABLE emprunt_emprunt (
@@ -42,15 +42,15 @@ CREATE TABLE emprunt_emprunt (
     date_emprunt DATE NOT NULL,
     date_retour DATE,
     PRIMARY KEY (id_emprunt),
-    FOREIGN KEY (id_objet) REFERENCES objet(id_objet),
-    FOREIGN KEY (id_membre) REFERENCES membre(id_membre)
+    FOREIGN KEY (id_objet) REFERENCES emprunt_objet(id_objet),
+    FOREIGN KEY (id_membre) REFERENCES emprunt_membre(id_membre)
 );
 
 INSERT INTO emprunt_membre (nom, date_de_naissance, genre, email, ville, mdp, image_profil) VALUES
-('Alice Dupont', '1990-05-15', 'F', 'alice@example.com', 'Paris', 'mdp123', 'alice.jpg'),
-('Bob Martin', '1985-08-20', 'M', 'bob@example.com', 'Lyon', 'mdp456', 'bob.jpg'),
-('Claire Bernard', '1992-12-30', 'F', 'claire@example.com', 'Marseille', 'mdp789', 'claire.jpg'),
-('David Lefevre', '1988-03-10', 'M', 'david@example.com', 'Toulouse', 'mdp101', 'david.jpg');
+('Alice Dupont', '1990-05-15', 'F', 'alice@example.com', 'Paris', 'mdp123', '../assets/bootstrap-icons/icons/person-fill.svg'),
+('Bob Martin', '1985-08-20', 'M', 'bob@example.com', 'Lyon', 'mdp456', '../assets/bootstrap-icons/icons/person-fill.svg'),
+('Claire Bernard', '1992-12-30', 'F', 'claire@example.com', 'Marseille', 'mdp789', '../assets/bootstrap-icons/icons/person-fill.svg'),
+('David Lefevre', '1988-03-10', 'M', 'david@example.com', 'Toulouse', 'mdp101', '../assets/bootstrap-icons/icons/person-fill.svg');
 
 INSERT INTO emprunt_categorie_objet (nom_categorie) VALUES
 ('Esthétique'),
@@ -91,3 +91,17 @@ INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VAL
 (8, 4, '2023-10-08', '2023-10-18'),
 (9, 1, '2023-10-09', '2023-10-19'),
 (10, 2, '2023-10-10', '2023-10-20');
+
+CREATE OR REPLACE VIEW v_emprunt_objet AS
+SELECT 
+    o.id_objet,
+    o.nom_objet,
+    o.id_categorie,
+    o.id_membre,         
+    e.id_emprunt,
+    e.date_emprunt,
+    e.date_retour
+FROM 
+    emprunt_objet o
+    JOIN emprunt_emprunt de ON e.id_objet = o.id_objet
+    ;
