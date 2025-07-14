@@ -2,7 +2,7 @@
 
 $uploadDir = realpath(__DIR__ . '/../assets/images/');
 $maxSize = 15 * 1024 * 1024; 
-$allowedMimeTypes = ['image/jpeg', 'image/png'];
+$allowedMimeTypes = [ 'image/jpeg', 'image/png'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media'])) {
     $file = $_FILES['media'];
     if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -19,12 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media'])) {
     }
     $originalName = pathinfo($file['name'], PATHINFO_FILENAME);
     $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $files = glob($uploadDir . '/image_*.' . $extension);
+    $extension=strtolower($extension);
+    $files = glob($uploadDir . '/video_*.' . $extension);
     $nextIndex = count($files) + 1;
-    echo $newName = 'image_' . $nextIndex . '.' . $extension;
-    if (move_uploaded_file($file['tmp_name'], $uploadDir . '/' . $newName)) {
-        echo $uploadDir . '/' . $newName;
+    $newName = 'video_' . $nextIndex . '.' . $extension;
+    $destination=$uploadDir . '/' . $newName;
+    if (move_uploaded_file($file['tmp_name'], $destination)) {
         echo "Fichier uploadé avec succès : " . $newName;
+
     } else {
         echo "Échec du déplacement du fichier. Erreur : " . print_r(error_get_last(), true);
     }
@@ -36,14 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media'])) {
 require_once("fonction.php");
 $bdd =  dbconnect();
 
-$mail =$_SESSION['Email'] ;
-$name_file =  $newName ;
+echo $id =$_POST['id'] ;
+$name_file =  $_POST ['name'];
+$cat = $_POST['genre'];
 
 
-$sql=sprintf("INSERT INTO  insta_post (Email_posteur, link_img, caption)
- Values ('$mail', '$name_file','$cap')");
+$sql=sprintf("INSERT INTO emprunt_objet (nom_objet, id_categorie, id_membre)
+ Values ('$name_file', '$cat','$id')");
+ echo $sql;
 $result = mysqli_query($bdd, $sql);
- header ('Location: ../pages/publier.php');
-"../assets/bootstrap-icons/icons/person-fill.svg"
+header ('Location: ../pages/accueil.php');
+
 
 ?>

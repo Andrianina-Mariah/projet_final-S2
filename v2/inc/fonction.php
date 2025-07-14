@@ -26,13 +26,32 @@ function get_objet()
 
 function filtre_cat($cate)
 {
+    $bdd = dbconnect();
+    $cate = mysqli_real_escape_string($bdd, $cate);
+
+    $sql = "SELECT * FROM v_emprunt_objet c
+            JOIN emprunt_categorie_objet o ON o.id_categorie = c.id_categorie
+            WHERE c.id_categorie = '$cate'";
+
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;
+}
+function get_categ()
+{
     $bdd = dbconnect();    
-    $sql = sprintf("Select o.nom_objet, c.nom_categorie from 
-    emprun_categorie_objet c join emprunt_objet o on o.id_categorie = c.id_categorie
-    where c.nom_categorie = '%s'",$cate);
+    $sql = sprintf("Select * from emprunt_categorie_objet;");
 
     $resultat=mysqli_query($bdd,$sql);
 
-    return resultat;
+    return $resultat;
+
+}
+function get_membre($mail)
+{
+    $bdd = dbconnect();
+    $sql = sprintf("SELECT * FROM emprunt_membre WHERE email = '%s'", $mail);
+    $resultat = mysqli_query($bdd, $sql);
+    $ret = mysqli_fetch_assoc($resultat);
+    return $ret;
 }
 ?>

@@ -106,11 +106,11 @@ SELECT
     e.date_retour
 FROM 
     emprunt_objet o
-JOIN 
-    emprunt_emprunt e ON e.id_objet = o.id_objet
-WHERE 
-    e.date_emprunt = (
-        SELECT MAX(e2.date_emprunt)
+LEFT JOIN 
+    emprunt_emprunt e ON e.id_emprunt = (
+        SELECT e2.id_emprunt
         FROM emprunt_emprunt e2
         WHERE e2.id_objet = o.id_objet
+        ORDER BY e2.date_emprunt DESC
+        LIMIT 1
     );

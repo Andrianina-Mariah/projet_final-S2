@@ -6,13 +6,13 @@
      <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Final exam</title>
-</head>
+</head>  
 <body>
     <header>
         <h1>Login</h1>
     </header>
-    <section>
-        <article>
+    <section class="row justify-content-md-center" >
+        <article class="col-sm-12 col-lg-8 bloc py-5">
             <form action="../inc/traitement-inscription.php" method="POST">
                 <p>Votre email<input type="email" name="email" placeholder="email..."/></p>
                 <p>Nom<input type="text" name="name" placeholder="nom..."/></p>
