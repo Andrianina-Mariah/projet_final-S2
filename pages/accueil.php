@@ -15,6 +15,7 @@ $mail =$_SESSION['email'] ;
 <body>
     <header>
         <h1>Bienvenue</h1>
+        
     </header>
     <section>
         <article class="liste_obj">

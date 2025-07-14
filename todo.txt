@@ -14,4 +14,4 @@ Insérer les données de test
 Page à créer
 Login et inscription
 Liste des objets , (avec date de retour si emprunt en cours )
-Filtre par catégorie 
+(en cours)Filtre par catégorie 

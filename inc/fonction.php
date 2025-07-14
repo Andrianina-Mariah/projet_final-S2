@@ -24,5 +24,15 @@ function get_objet()
     return $resultat;
 }
 
-function
+function filtre_cat($cate)
+{
+    $bdd = dbconnect();    
+    $sql = sprintf("Select o.nom_objet, c.nom_categorie from 
+    emprun_categorie_objet c join emprunt_objet o on o.id_categorie = c.id_categorie
+    where c.nom_categorie = '%s'",$cate);
+
+    $resultat=mysqli_query($bdd,$sql);
+
+    return resultat;
+}
 ?>
